@@ -217,15 +217,13 @@ def trial_treatment(schedule, file, ratio):
   #if ratio == 0:
       #treatment_res_list = data_PD[(data_PD['RT Treatment Days'] == str(t_treat_rad_optimal)) & (data_PD['anti-PD-1 Treatment Days'] == str(t_treat_p1_optimal))].values.tolist()[0]
   if ratio == 0.75:
-      # if isinstance(data['RT Treatment Days'].iloc, str):
-      #    data['RT Treatment Days'] = data['RT Treatment Days'].apply(ast.literal_eval)
-      # if isinstance(data['anti-PD-1 Treatment Days'].iloc, str):
-      #    data['anti-PD-1 Treatment Days'] = data['anti-PD-1 Treatment Days'].apply(ast.literal_eval)
-      # if isinstance(data['anti-CTLA-4 Treatment Days'].iloc, str):
-      #    data['anti-CTLA-4 Treatment Days'] = data['anti-CTLA-4 Treatment Days'].apply(ast.literal_eval)
-      #print(data[(data['RT Treatment Days'] == str(t_rad)) & (data['anti-PD-1 Treatment Days'] == str(t_treat_p1)) & (data['anti-CTLA-4 Treatment Days'] == str(t_treat_c4))])
-      treatment_res_list = data[(data['RT Treatment Days'] == str(t_rad)) & (data['anti-PD-1 Treatment Days'] == str(t_treat_p1)) & (data['anti-CTLA-4 Treatment Days'] == str(t_treat_c4))].values.tolist()[0]
-      print(treatment_res_list)
+    filtered_data = data[(data['RT Treatment Days'] == str(t_rad)) & 
+                         (data['anti-PD-1 Treatment Days'] == str(t_treat_p1)) & 
+                         (data['anti-CTLA-4 Treatment Days'] == str(t_treat_c4))]
+    
+    if not filtered_data.empty:
+        treatment_res_list = filtered_data.values.tolist()[0]
+        print(treatment_res_list)
   else:
       args = [(j, t_rad, t_treat_p1, t_treat_c4, ratio) for j in range(sample_size)]
   #print('args', args)
