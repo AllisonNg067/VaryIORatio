@@ -138,7 +138,7 @@ param = [0, 0, 0.15769230769230763, 0.04269230769230769]
 # param[33] = 0.0897670603865841
 # param.append(2.2458318956090505*10**80)
 bed = 80
-file_name = 'RT ' + str(RT_fractions) + ' PD ' + str(PD_fractions) + ' CTLA4 ' + str(CTLA4_fractions) + ' varied IO ratio f.csv'
+file_name = 'RT ' + str(RT_fractions) + ' PD ' + str(PD_fractions) + ' CTLA4 ' + str(CTLA4_fractions) + ' varied IO ratio z.csv'
 schedule_list, DList = get_treatment_and_dose(bed, RT_fractions, param, PD_fractions, CTLA4_fractions, t_treat_rad_optimal, t_treat_p1_optimal, t_treat_c4_optimal)
 #print(len(schedule_list))
 ratios = list(np.linspace(0,1,21)) #the proportion of IO total concentration that is anti-PD-1
@@ -272,7 +272,7 @@ iterations = len(schedule_list)  # Or any other number of iterations
 #     print('k', k)
 #     print(params[k])
 #ratios = [0, 0.5,0.75]
-args = [(schedule, params, ratio) for schedule in range(125,min(iterations,150)) for ratio in ratios]
+args = [(schedule, params, ratio) for schedule in range(625,min(iterations,650)) for ratio in ratios]
 # Use a ThreadPoolExecutor to run the iterations in parallel
 with concurrent.futures.ThreadPoolExecutor() as executor:
     outputData = list(executor.map(lambda p: trial_treatment(*p), args))
