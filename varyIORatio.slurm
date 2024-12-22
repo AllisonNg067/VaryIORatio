@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=varyCTLA4PD1Ratio
+#SBATCH --job-name=varyIORatio
 #SBATCH --nodes=6
 #SBATCH --tasks-per-node=10
 #SBATCH --cpus-per-task=10
